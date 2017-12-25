@@ -1,0 +1,36 @@
+<html>
+<head>
+   <meta charset="utf-8"> 
+</head>
+<body>
+    <div id="container1">
+        <p class="contains"></p>
+        <p class="contains"></p>
+        <div class="bfc toggleBfc">            <!--直接用在p上不行-->
+            <p class="contains"></p>
+        </div>  
+    </div>
+    <button style="margin:20px">切换样式</button>
+    <style>
+       #container1{
+           overflow: hidden;
+           background-color: cyan
+       }
+       .contains{
+           background-color: darkorchid;
+           margin: 20px 0;
+           height:50px
+       }
+       .bfc{
+           overflow:hidden;
+       }
+    </style>
+    <script type="text/javascript">
+       var button=document.querySelector("button");
+       var toggleBfc=document.querySelector(".toggleBfc");
+       button.addEventListener("click",function(){
+         console.log(toggleBfc.classList);
+       },false);
+    </script>
+</body>
+</html>
