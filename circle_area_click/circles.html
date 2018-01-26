@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div id="circle1" onclick="click1()"></div>
+
+    <div>
+        <img src="1.png" alt="呵呵" width="300" height="500" usemap="#try">
+        <map name="try" id="try">
+            <area shape="circle" coords="150,250,50" href="#" alt="呵呵">
+        </map>
+    </div>
+
+    <div onclick="click3(event)">
+        <img src="1.png" alt="呵呵" width="300" height="500">
+    </div>
+    <svg viewBox="0 0 2 2" version="1.1" xmlns="http://www.w3.org/2000/svg" onclick="click4()">
+        <circle id="circle4" cx="1" cy="1" r="0.5" />
+    </svg>
+
+</body>
+<style>
+    div {
+        display: inline-block;
+    }
+
+    #circle1 {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+</style>
+<script>
+    function click1() {
+        let circle1 = document.getElementById("circle1");
+        circle1.style.backgroundColor = '#114422';
+    }
+    function click3(e) {
+        let x = 560;
+        let y = 250;
+        let x1 = e.clientX;
+        let y1 = e.clientY;
+        let dist = Math.sqrt(Math.pow(x1 - x, 2) + Math.pow(y1 - y, 2));
+        if (dist < 50) {
+            alert("in the circle");
+        }
+    }
+    function click4() {
+        alert("svg实现了");
+    }
+</script>
+
+</html>
