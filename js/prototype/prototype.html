@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+       function Dog(){
+           this.name="dog";
+           this.year="22";
+       }
+       function Animal(){
+           this.kind="animal";
+       }
+       
+       Animal.kind="animals";
+       Dog.prototype=Animal;
+       var dog= new Dog();
+       document.write(dog.name);
+       document.write("<br/>"); 
+       document.writeln(dog.year);
+       document.write("<br/>");
+       document.writeln(dog.kind);
+       document.write("<br/>");
+       document.write(dog.constructor);
+       document.write("<br/>");
+       document.write(dog.__proto__);
+
+    function employee(name,job,born)
+    {
+    this.name=name;
+    this.job=job;
+    this.born=born;
+    }
+    
+    var bill=new employee("Bill Gates","Engineer",1985);
+    document.write("<br/>");
+    document.write(bill.constructor);
+    document.write("<br/>");
+    document.write(bill.__proto__ == bill.constructor.prototype);
+    
+</script>  
+</body>
+</html>
