@@ -84,3 +84,67 @@ var result=nums.filter(test);
 console.log(result)    // [2,4]
 console.log(nums)      // [2,4,7]
 ```
+### 数组基本功
+#### 一维数组的建立
+```
+var a=[1,2,3];
+var b=new Array();
+var c=new Array(1,2,3);  //数组是[1,2,3]
+var d=new Array(10);     //数组长度是10
+var e="I love javascript".split("");  //split字符串生成数组，''是每个字符成为数组的一项
+var d="I love javascript".split(" "); //空格为间隔，得到['I','love','javascript']
+```
+#### 判断是不是数组，方法一
+```
+var num1=[2,4,7];
+var num2="sss" ;
+var result1=Array.isArray(num1);    //true
+var result2=Array.isArray(num2);    //false
+```
+#### 判断一个对象是不是数组，道爷的方法
+```
+var num1=[2,4,7];
+var num2={name:1,person:2};
+var is_array=function(value){
+return Object.prototype.toString.apply(value) === '[object Array]';
+//如果是非数组的对象，左值返回[object Object]，注意大小写
+}
+var result1=is_array(num1);        //true
+var result2=is_array(num2);        //false
+```
+#### 数组的深浅拷贝
+```
+var a=[1,2,2]; var b=a;    //浅拷贝，赋值引用
+var c=[1,2,3];             //深拷贝，得到副本
+var d=[];
+for(var i=0;i<c.length;i++){
+  d[i]=c[i];
+}
+```
+
+### 数组的常用函数
+#### 查找
+```
+var nums=[1,2,3];
+var position=nums.indexOf(1)    //返回0
+//indexOf返回数组里找到的第一个数，没有就返回 -1
+//lastIndexOf  从后往前找的第一个数
+```
+#### 数组转为字符串
+```
+var nums=[1,2,3];
+var str=nums.toString();   //得到1，2，3
+var str2=nums.join();      //得到1, 2, 3
+var str=nums.join("");     //得到123
+```
+#### 已有数组创建新数组
+##### concat
+```
+var nums1=[1,2,3];
+var nums2=[4,5,6];
+var num=nums1.concat(nums2);     //返回[1,2,3,4,5,6]
+```
+##### splice
+```
+
+```
