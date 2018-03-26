@@ -1,4 +1,4 @@
-##  数组
+##  数组  es5+es6
 ####  二维数组建立之简易方法
 ```
 var grades=[[1,2],[1,2],[1,2]]
@@ -60,6 +60,7 @@ var nums=[2,4,7];
 var result=nums.reduce(test);     
 console.log(result)     //13
 ```
+##### reduceRight()方法，它其实和reduce()方法一样，区别是它是从数组的右边开始累加到左边的。
 
 ### 生成新数组的迭代器方法
 #### map  不改变原数组，返回新数组，和forEach功能类似
@@ -138,13 +139,69 @@ var str2=nums.join();      //得到1, 2, 3
 var str=nums.join("");     //得到123
 ```
 #### 已有数组创建新数组
-##### concat
+##### concat  不改变原数组，返回拼接起来的数组
 ```
 var nums1=[1,2,3];
 var nums2=[4,5,6];
 var num=nums1.concat(nums2);     //返回[1,2,3,4,5,6]
 ```
-##### splice
+##### splice  改变原数组，返回被删除内容组成的数组，此函数第二个参数是去除的数目，第三个参数是增加的项
 ```
+var num1=[1,2,3];
+var num2=num1.splice(1,1,4);
+console.log(num1)          // [1,4,3]
+console.log(num2)          // [2]
 
 ```
+##### slice 不改变原数组，返回截取内容组成的数组
+```
+var num1=[1,2,3];
+var num2=num1.slice(1,2);      //截取从1开始，但是不到2
+console.log(num1)              // [1,2,3]
+console.log(num2)              // [2]
+``` 
+
+#### 增删改变数组
+##### 尾部增删
+```
+//增加的方法
+var num=[1,2,3];
+var a=num.push(4);   //a是被添加的元素
+num[num.length]=5;
+
+//删除的方法
+var a=num.pop();    //a是被删除的值
+```
+##### 头部增删
+```
+var num=[1,2,3];
+num.unshift(1);      //num变为[1,1,2,3]，unshift返回被添加的元素
+var a=num.shift();   //a是被删除的值
+```
+#### 排序
+##### sort  排序，默认是把每一项当做字符串来排序，会改变原数组
+```
+var num1=[3,22,11];
+var num2=num1.sort();
+console.log(num1)        // [11,22,3]
+console.log(num2)        // [11,22,3]
+
+// 递增
+var num1=[3,22,11];
+var num2=num1.sort(function(a,b){
+   return a-b;
+});
+console.log(num1)     // [3,11,22]
+console.log(num2)     // [3,11,22]
+
+//递减，改为return b-a
+```
+##### reverse  逆序，会改变原数组，返回逆序后的数组
+```
+var num1=[1,2,3];
+var num2=num1.reverse();
+console.log(num1)         // [3,2,1]
+console.log(num2)         // [3,2,1]
+```
+### 综上，改变原数组的七个函数，分别是splice push pop unshift shift sort reverse
+
