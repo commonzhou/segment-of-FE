@@ -205,3 +205,74 @@ console.log(num2)         // [3,2,1]
 ```
 ### 综上，改变原数组的七个函数，分别是splice push pop unshift shift sort reverse
 
+#### es6的数组
+#####  Array.from  将类数组的对象和可遍历的对象转为数组，包括Set和Map
+```
+let arrayLike = {
+    '0': 'a',
+    '1': 'b',
+    '2': 'c',
+    length: 3
+};
+// ES5的写法
+var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']
+// ES6的写法
+let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+console.log(arr1)
+console.log(arr2)
+```
+##### Array.of  将new Array的行为进行统一
+```
+var arr0 = new Array(2);
+console.log(arr0);   // []
+arr0.length;         // 2
+
+var arr0 = Array.of(2);
+console.log(arr0);             // [2]
+var arr1 = Array.of(1,2,3);
+console.log(arr1);             // [1,2,3]
+```
+##### copyWithin 数组数据的替换，第一个参数是开始替换的位置，第二个参数表示从哪里开始读数据，第三个是读到哪一个位置前为止，默认是数组尾部
+```
+[1, 2, 3, 4, 5].copyWithin(0, 3)     // [4, 5, 3, 4, 5]
+```
+##### find，传入一个回调函数，返回符合条件的第一个数，没有返回undefined。findIndex和它类似，返回的是下标，没有返回-1
+```
+var a=[1, 4, -5, 10].find((n) => n < 0);
+console.log(a)                   // -5
+var b=[1, 4, -5, 10].findIndex((n) => n < 0)
+console.log(b)                  // 2
+```
+##### fill，给定初始值，填充一个数组，改变原数组
+```
+['a', 'b', 'c'].fill(7)    // [7, 7, 7]
+new Array(3).fill(7)       // [7, 7, 7]
+['a', 'b', 'c'].fill(7, 1, 2)     // ['a', 7, 'c']
+```
+
+##### entries()，keys()和values() —— 用于遍历数组。三者返回一个遍历器对象，使用for of来进行遍历
+```
+for(let index of ['a','b'].keys()){
+console.log(index)                    //返回0 1下标
+}
+
+for(let item of ['a','b'].values()){
+console.log(item)                     //返回数值 'a','b'
+}
+
+for(let [index,item] of ['a','b'].entries()){
+console.log(index,item)              //返回 0 'a'，1 'b'
+}
+```
+##### includes，es7的方法，判断是否包含某个值，返回布尔值
+```
+[1, 2, 3].includes(2);     // true
+[1, 2, 3].includes(4);     // false
+[1, 2, NaN].includes(NaN); // true
+[1, 2, 3].includes(3, 3);  // false
+[1, 2, 3].includes(3, -1); // true      -1表示从右边第一个开始
+```
+####  数组里面的-1，一般都是指从右边开始
+
+
+
