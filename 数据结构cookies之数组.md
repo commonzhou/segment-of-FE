@@ -216,6 +216,8 @@ let arrayLike = {
 };
 // ES5的写法
 var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']
+// ES5的更常见的写法
+var arr1 = Array.prototype.slice.call(arrayLike);  //  ['a', 'b', 'c']
 // ES6的写法
 let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
 console.log(arr1)
@@ -273,6 +275,4 @@ console.log(index,item)              //返回 0 'a'，1 'b'
 [1, 2, 3].includes(3, -1); // true      -1表示从右边第一个开始
 ```
 ####  数组里面的-1，一般都是指从右边开始
-
-
 
