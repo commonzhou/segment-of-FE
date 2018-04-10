@@ -56,3 +56,26 @@ var pattern=/.at/;
 var res=str.match(pattern);  //返回一个数组，匹配第一个
 console.log(res);           // ["bat", index: 0, input: "bat,cat,wat", groups: undefined] ,index:0说明.匹配所有
 ```
+```
+var str="bat,cat,wat";  
+var pattern=/at/;
+var res=str.search(pattern);      //查找模式
+console.log(res);    // 1
+```
+```
+var str="bat,cat,wat";  
+var pattern=/at/;
+var res=str.replace(pattern,'bb');    // replace替换第一个匹配到的
+console.log(res);          //bbb,cat,wat
+
+var str="bat,cat,wat";  
+var pattern=/at/g;
+var res=str.replace(pattern,'bb');    //  正则加上/g就会全部替换
+console.log(res);        //bbb,cbb,wbb   
+```
+#####  分割和比较
+```
+ //split分割分割字符串进入数组
+ //localecompare 比较字符串，按照字典序比较
+```
+
