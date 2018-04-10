@@ -36,3 +36,23 @@ console.log(res3);     //   -1  找不到是-1
 
 // lastIndexOf 从后向前找，但是下标的记号和 indexOf一样
 ```
+
+##### 操作字符串  trim toLocaleLowerCase() toLocaleUpperCase()
+```
+// trim不改变原字符串
+var str=" hello world ";  
+var res=str.trim();
+console.log(res);    //hello world     
+console.log(str);    // hello world   
+```
+```
+toLocaleLowerCase 转为全小写，针对地区来实现，相比toLowerCase更推荐
+```
+
+#####  正则表达式的匹配
+```
+var str="bat,cat,wat";  
+var pattern=/.at/;
+var res=str.match(pattern);  //返回一个数组，匹配第一个
+console.log(res);           // ["bat", index: 0, input: "bat,cat,wat", groups: undefined] ,index:0说明.匹配所有
+```
