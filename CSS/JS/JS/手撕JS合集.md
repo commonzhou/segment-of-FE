@@ -143,7 +143,32 @@ function recursionDeepcopy(obj){
 ```
 ```
 // 这是JS主打的
-
+<body>
+    <div id="ball"> 
+    </div>
+    <style>
+      #ball{
+        position:absolute;
+        top:30px; left:100px;
+        width:20px; height:20px;background-color:green;
+        border-radius:50%;
+        transform-origin:50px 50px;
+      }
+    </style>
+    <script>
+      var ball=document.getElementById("ball");
+      function circle(){
+           var startTime=Date.now(); var gap=4000;
+           requestAnimationFrame(function update(){
+                 var currentTime=Date.now();
+                 var freq=(currentTime-startTime)/gap;
+                 ball.style.transform="rotate(" + 360*freq + "deg)";
+                 requestAnimationFrame(update);
+           });
+      }
+      circle();  
+    </script>
+  </body>
 ```
 
 #### div移动300px
