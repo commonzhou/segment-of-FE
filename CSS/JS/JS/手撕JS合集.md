@@ -227,6 +227,58 @@ width:300px;
 </html>
 ```
 
+#### 函数的节流和防抖
+```
+/* 节流，标志位，用于scroll和resize */
+var canRun=true;
+document.getElementById('throttle').onscroll=function(){
+  if(!canRun){            //  判断是否空闲
+     return;
+  }
+  canRun=false;
+  setTimeout(function(){
+    func();              //  要执行的函数
+    canRun=true;
+  },300);
+};
+```
+```
+/* 防抖，时间戳/定时器，用于用户注册登录时，用户输入完成后，才进行判断 */
+var timer=false;
+document.getElementById('debounce').onscroll=function(){
+  clearTimeout(timer);        //  清除上一次未执行的代码
+  timer=setTimeout(function(){
+    func();                   //  要执行的函数
+  },300);
+};
+```
+##### 上面的写法虽然正确，但是不够geek，改进如下
+```
+/* 节流 */
+function throttle(fn,interval=300){
+  let canRun=true;
+  return function(){
+    if(!canRun) return;
+    canRun=false;
+    setTimeout(()=>{
+      fn.apply(this,arguments);     //  箭头函数，故直接用this
+      canRun=true;
+    },interval);
+  };
+}
+```
+```
+/* 防抖 */
+function debounce(fn,interval=300){
+  let timer=null;
+  return function(){
+    clearTimeout(timer);
+    timer=setTimeout(()=>{
+      fn.apply(this,arguments);
+    },interval);
+   };
+}
+```
 
 
 
