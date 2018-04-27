@@ -280,6 +280,47 @@ function debounce(fn,interval=300){
 }
 ```
 
+####  嵌套数组的拆分
+##### 从[1,[2,3]]到[1,2,3]
+```
+var a=[1,[2,[3,4]],4,5];
+var temp=[];
+function test(arr){
+   var len=arr.length;
+   for(let i=0;i<len;i++){
+      if(typeof arr[i] !== 'number'){
+        test(arr[i]);
+      }
+      else{
+         temp.push(arr[i]);
+      }
+   }
+}    
+test(a); 
+for(let v of temp){
+  console.log(v);
+}
+```
+##### 装逼必备的方法是generator生成器
+```
+var arr=[1,[2,[3,4]],4,5];
+var flat=function* (a){
+  var length=a.length;
+  for(let i=0;i<length;i++){
+    let item=a[i];
+    if(typeof item !== 'number'){
+      yield* flat(item);
+    }
+    else{
+      yield item;
+    }
+  }
+};
+
+for(let v of flat(arr)){
+  console.log(v);
+}
+```
 
 
 
