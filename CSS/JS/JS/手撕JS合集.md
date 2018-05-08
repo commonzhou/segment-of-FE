@@ -279,6 +279,21 @@ function debounce(fn,interval=300){
    };
 }
 ```
+##### 什么，还不够geek
+```
+/*防抖的另一种写法*/
+export function _debounce(func,wait){
+    let _timestamp,_timer
+    return function(){
+        let now=Date.now()
+        if(_timestamp && ((now-_timestamp)<wait)){
+           clearTimeout(_timer)
+        }
+        _timestamp=now;
+        _timer=setTimeout(func.bind(this,...arguments),wait)
+    }
+}
+```
 
 ####  嵌套数组的拆分
 ##### 从[1,[2,3]]到[1,2,3]
