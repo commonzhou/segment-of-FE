@@ -355,6 +355,44 @@ for(let x of iterTree(tree)) {
 }
 ```
 
+#### 三角形的绘制
+```
+/* 汇聚了border svg canvas三种方法*/
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html">
+</head>
+<body>
+ <div class="triangle1"></div>
+ <svg width="100" height="100">
+    <polygon points="50,0 100,100 0,100" style="fill:red;">
+ </svg>
+ <canvas id="mycanvas" width="100" height="100"></canvas>
+<style>
+div{
+ margin:50px;
+}
+.triangle1{
+ width:0; height:0;
+ border-width:50px;
+ border-style:solid;
+ border-color:transparent transparent red transparent;
+}
+</style>
+<script>
+var canvas=document.getElementById('mycanvas');
+var ctx=canvas.getContext('2d');
+ctx.beginPath();
+ctx.fillStyle='red';
+ctx.moveTo(50,0);
+ctx.lineTo(0,100);
+ctx.lineTo(100,100);
+ctx.fill();
+</script>
+</body>
+</html>
+```
+
 
 
 
