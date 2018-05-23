@@ -392,7 +392,55 @@ ctx.fill();
 </body>
 </html>
 ```
-
+#### 原生拖动一个圆形、勉强算是球吧
+```
+<!dcotype>
+<html>
+<head></head>
+<body>
+  <canvas id="can" width="400" height="400">
+     您的浏览器不支持canvas
+  </canvas>
+  
+  <script type="text/javascript">
+      var can=document.getElementById("can");
+      var ctx=can.getContext("2d");  
+      var isDown =false;
+      var dx=0,dy=0;
+      var centerX=50,centerY=50;
+      function createCircle(x,y){
+        ctx.clearRect(0,0,can.width,can.height);
+        ctx.beginPath();
+        ctx.fillStyle="blue";
+        ctx.arc(x,y,30,0,Math.PI*2);
+        ctx.fill();
+      } 
+      createCircle(centerX,centerY);          // 画圆形
+      can.onmousedown=function(ev){
+          var e=ev||event;
+          dx=e.clientX;
+          dy=e.clientY;
+          isDown = true;
+          can.onmousemove=function(ev){
+              var e=ev||event;
+              var mx=e.clientX;
+              var my=e.clientY;
+              var _x=mx-dx;
+              var _y=my-dy;
+              createCircle(centerX+_x,centerY+_y);
+          }
+      }
+      can.onmouseup=function(ev){
+          var e=ev||event;
+          isDown=false;
+          centerX += (e.clientX - dx);
+          centerY += (e.clientY - dy);
+          can.onmousemove=null;
+      }
+  </script>
+</body>
+</html>
+```
 
 
 
