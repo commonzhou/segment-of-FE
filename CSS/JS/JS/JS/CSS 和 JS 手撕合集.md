@@ -459,6 +459,86 @@ var singleton=function(){
 
 ```
 
+##### CSS绘制动态的波浪线，原理是利用border-radius:45%的椭圆的旋转和上下微移来进行波浪的模拟
+```
+<div class="container">
+<div class="wave">
+</div>
+</div>
+<style>
+.container{
+  position:absolute;
+  width:200px;
+  height:200px;
+  padding:5px;
+  border:5px solid rgb(118,218,255);
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  overflow:hidden;
+}
+.wave{
+  position:relative;
+  width:200px;
+  height:200px;
+  background-color:rgb(118,218,255);
+  border-radius:50%;
+}
+.wave::before,
+.wave::after{
+  content:"";
+  position:absolute;
+  width:400px;
+  height:400px;
+  top:0;
+  left:50%;
+  background-color:rgba(255,255,255,0.4);
+  border-radius:45%;
+  transform:translate(-50%,-70%) rotate(0);
+  animation:rotate 6s linear infinite;
+  z-index:10;
+}
+.wave::after{
+  border-radius:47%;
+  background-color:rbga(255,255,255,0.9);
+  transform:translate(-50%,-70%) rotate(0);
+  animation:rotate 10s linear -5s infinite;
+  z-index:20;
+}
+@keyframes rotate{
+  50%{
+    transform:translate(-50%,-73%) rotate(180deg);
+  }
+  100%{
+    transform:translate(-50%,-70%) rotate(360deg);
+  }
+}
+</style>
+```
+#####  CSS静态波浪线，利用径向渐变radial-gradient
+```
+<div class="wrapper">
+<div class="wave">
+</div>
+</div>
+<style>
+.wrapper{
+  padding:10px;
+  background-color:#eee;
+}
+.wave{
+  width:100%;
+  height:10px;
+  background-image: -webkit-radial-gradient(circle, transparent, transparent 9px, orange 9px, orange 10px, transparent 10px, transparent);
+  background-image: -moz-radial-gradient(circle, transparent, transparent 9px, orange 9px, orange 10px, transparent 10px, transparent);
+  background-image: radial-gradient(circle, transparent 8px, orange 9px, orange 10px, transparent 11px);
+  background-size:  20px 20px;      // 一个背景图片的大小，宽20px，高20px，一个整圆，此时默认是repeat的，所以横向延伸，但是高10px，所以是半圆
+  //  radial-gradient 里的像素值是断点，颜色变化的间隔点，8和9相隔1px是为了消除锯齿效应，9和10是橙色的起点和终点
+}
+</style>
+
+```
 
 
 
