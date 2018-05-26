@@ -294,6 +294,22 @@ export function _debounce(func,wait){
     }
 }
 ```
+##### 函数节流的时候，如果使用setTimeout，异步执行如果遇上了运行时间很长的函数，不好，因此直接判断时间戳最佳
+```
+ function throttle(fn,delay = 300){
+        let last=0;
+	let that=this;
+	return function(){
+	  let curr=new Date().getTime();    // 很大的一个毫秒数
+	  if(curr - last > delay){
+	    // 第一次执行 curr-last，就是curr，大于delay必然，首次就直接来执行，然后更新last
+	    fn.apply(that,arguments);
+	    last=curr;
+	  }
+	}
+ }
+ 
+```
 
 ####  嵌套数组的拆分
 ##### 从[1,[2,3]]到[1,2,3]
@@ -539,6 +555,7 @@ var singleton=function(){
 </style>
 
 ```
+
 
 
 
