@@ -556,6 +556,35 @@ var singleton=function(){
 
 ```
 
+##### CSS实现等比例缩放的盒子
+```
+<style>
+.item {
+    float: left;
+    width: 20%;
+    margin: 10px 2%;
+    height: 0;
+    padding-bottom: 10%;
+    background-color: #dbe0e4;
+    
+    //background-color的范围：这种颜色会填充元素的内容、内边距和边框区域，扩展到元素边框的外边界（但不包括外边距）。
+    //如果边框有透明部分（如虚线边框），会透过这些透明部分显示出背景色。
+    // 利用了当padding-bottom为百分数的时候，其值是和父元素的宽来取百分比的，这个黑科技啊。你不知道的css这书。。。。
+    
+}
+</style>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+```
+
 
 
 
