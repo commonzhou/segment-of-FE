@@ -585,6 +585,59 @@ var singleton=function(){
 <div class="item"></div>
 ```
 
+#####  原生JS实现 bind call apply，使用了ES6
+```
+let one={
+     name:'one',
+	 sayName:function(age){
+	   console.log(`Hello,我是 ${this.name}，年龄是 ${age}`);
+	 }
+   }
+   let day={
+     name:'zf'
+   }
+   
+   Function.prototype.myBind = function(context){
+      context = Object(context) || window;
+	  context.__fn__ = this;
+	  let args = [...arguments].slice(1);
+	  context.__result__ = function(){
+	    let res_args = [...args,...arguments];
+		context.__fn__(...res_args);
+	  }
+	  return context.__result__;
+   } 
+   
+   Function.prototype.myCall = function(context){
+      context = Object(context) || window;
+	  context.__fn__ = this;
+	  let res_args = [...arguments].slice(1);
+	  let result =  context.__fn__(...res_args);
+	  delete context.__fn__;
+	  return result;
+   }
+   
+   Function.prototype.myApply = function(context){
+      context = Object(context) || window;
+	  context.__fn__ = this;
+	  let res_args = arguments[1];
+	  let result = context.__fn__(...res_args);
+	  delete context.__fn__;
+	  return result;
+   }
+   
+   one.sayName.myBind(day,22)();
+   one.sayName.myCall(day,55);
+   one.sayName.myApply(day,[123]);
+   
+   // myBind里面，context就是传入的上下文 day对象
+   // this便是调用了myBind的函数对象sayName
+   // res_args考虑了参数的合并，因为bind是可以进行延迟传参的
+   // myBind为了返回函数，在fn的外层套了一层函数，返回该函数就行
+   // call和apply的实现可以参考这个，需要变化的是参数的处理、函数立即执行
+   
+```
+
 
 
 
