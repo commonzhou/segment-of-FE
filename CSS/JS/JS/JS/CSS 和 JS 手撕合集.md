@@ -640,6 +640,32 @@ let one={
    
 ```
 
+##### JS实现倒计时
+```
+function countTime(times){
+     let timer = null;
+     timer = setInterval(function(){
+	    let day=0,hour=0,minute=0,second=0;
+		if(times>0){
+		  day = Math.floor(times/(60*60*24));
+		  hour = Math.floor(times/(60*60))-(day*24);    // 时间全部化为小时之后，减去已有天数的小时
+		  minute = Math.floor(times/60)-(day*24*60)-(hour*60);
+		  second = Math.floor(times)-(day*24*60*60)-(hour*60*60)-(minute*60);
+		}
+		if(day<=9) day='0'+day;
+		if(hour<=9) hour = '0'+hour;
+		if(minute<=9) minute = '0'+minute;
+		if(second<=9) second = '0'+second;
+		
+		console.log(day+"天:"+hour+"小时:"+minute+"分钟:"+second+"秒");
+		times--;
+ 	 },1000);	
+     if(times <= 0){
+	   clearInterval(timer);
+	 }	 
+   }
+   countTime(11111111111);
+```
 
 
 
