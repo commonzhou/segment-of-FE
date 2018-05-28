@@ -103,10 +103,12 @@ function recursionDeepcopy(obj){
      var newobj=(Object.prototype.toString.apply(obj)==='[object Array]') ? [] : {};   //判断对象是不是数组
      for(let item in obj){
         if(obj.hasOwnProperty(item)){
-            if(typeof obj[item]==="object"){
-                newobj[item]=recursionDeepcopy(obj[item]);   //对于循环引用没有考虑啊
+	    let str = Object.prototype.toString.apply(obj[item]);
+            if(str === '[object Array]' || str === '[object Object]'){      //  避免函数这样的对象发生循环引用的现象
+                newobj[item]=recursionDeepcopy(obj[item]);   
             }
-            else{     //此处不加else的话，对于对象里的对象，还是会走这里，导致将引用传过去，使得对象的对象还是浅拷贝
+	    //  函数,date,正则之辈走这里  [object Function]
+            else{     
                 newobj[item]=obj[item];
             }
         }
