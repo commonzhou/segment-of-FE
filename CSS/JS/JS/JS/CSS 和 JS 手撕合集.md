@@ -667,5 +667,22 @@ function countTime(times){
    countTime(11111111111);
 ```
 
+##### 函数柯里化   好处：参数复用、延迟执行、固定易变因素 如bind固定this
+```
+function curry(fn,context){
+     let args = Array.prototype.slice.call(arguments,2);
+	 return function(){
+	       let innerArgs = Array.prototype.slice.call(arguments);
+		let finalArgs = args.concat(innerArgs);
+		return fn.apply(context,finalArgs);
+	 };
+   }
+   function addNum(num1,num2){
+     return num1+num2;
+   }
+   let curryAdd = curry(addNum,null,4);
+   console.log(curryAdd(3));
+   
+```
 
 
